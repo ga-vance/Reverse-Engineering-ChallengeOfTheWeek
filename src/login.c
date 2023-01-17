@@ -8,13 +8,13 @@
 #include <openssl/md5.h>
 
 static char enc[] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H',
-                                'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P',
-                                'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X',
-                                'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f',
-                                'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n',
-                                'o', 'p', 'q', 'r', 's', 't', 'u', 'v',
-                                'w', 'x', 'y', 'z', '0', '1', '2', '3',
-                                '4', '5', '6', '7', '8', '9', '+', '/'};
+                    'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P',
+                    'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X',
+                    'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f',
+                    'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n',
+                    'o', 'p', 'q', 'r', 's', 't', 'u', 'v',
+                    'w', 'x', 'y', 'z', '0', '1', '2', '3',
+                    '4', '5', '6', '7', '8', '9', '+', '/'};
 static char *table = NULL;
 void build_table() {
  
@@ -23,9 +23,7 @@ void build_table() {
     for (int i = 0; i < 64; i++)
         table[(unsigned char) enc[i]] = i;
 }
-unsigned char *convert(const char *data,
-                             size_t input_length,
-                             size_t *output_length) {
+unsigned char *convert(const char *data, size_t input_length, size_t *output_length) {
  
     if (table == NULL) build_table();
  
@@ -83,7 +81,7 @@ int main (int argc, char * argv[]) {
 
 
     if (argc < 3) {
-        printf("Usage: %s ACCOUNT_NAME PASSWORD\n", argv[0]);
+        printf("Usage: %s USER_NAME PASSWORD\n", argv[0]);
         exit(1);
     }
     int check = strcmp(acc, argv[1]);
