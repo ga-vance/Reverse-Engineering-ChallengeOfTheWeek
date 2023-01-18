@@ -6,7 +6,7 @@ We recovered two binary files from an old server I found on ebay. There might be
 
 ## Challenge Hints
 1.  What is the input being checked against?
-2.  What information does the program give us when it runs
+2.  What information does the program give us when it runs?
 
 ## Challenge Solution
 <details>
