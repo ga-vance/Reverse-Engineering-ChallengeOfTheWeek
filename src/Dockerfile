@@ -1,6 +1,7 @@
-FROM alpine
+FROM alpine:latest
 
 RUN apk add --update socat build-base bash
+RUN apk add libressl-dev
 
 RUN mkdir -p /home/app/vault &&\
     adduser -h /home/app/ app --disabled-password &&\
