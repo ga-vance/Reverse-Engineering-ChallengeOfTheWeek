@@ -7,14 +7,14 @@ RUN mkdir -p /home/app/vault &&\
     chown -R app:app /home/app/
 
 COPY Makefile /home/app/Makefile
-COPY license.c /home/app/license.c
-COPY ./flag.txt /home/app/vault/flag.txt
+COPY login.c /home/app/login.c
+COPY vault.c /home/app/vault.c 
 
 USER app
 
 WORKDIR /home/app/
 RUN make
 
-EXPOSE 24785
+EXPOSE 1984
 
-CMD ["/bin/sh", "-c", "socat -d -d TCP-L:24785,fork EXEC:/home/app/license,pty,stderr"]
+CMD ["/bin/sh", "-c", "socat -d -d TCP-L:1984,fork EXEC:/home/app/login,pty,stderr"]
