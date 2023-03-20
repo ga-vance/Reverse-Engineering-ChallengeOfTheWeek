@@ -57,74 +57,62 @@ unsigned char *convert(const char *data, size_t input_length, size_t *output_len
 }
 
 int main (int argc, char * argv[]) {
-    char f[] = "mal";
-    char s[] = "lo";
-    char t[] = "ry";
-    char acc[9];
-    strcat(acc, f);
-    strcat(acc, s);
-    strcat(acc, t);
-    char fi[] = "dWN";
-    char se[] = "zZW";
-    char th[] = "N7c";
-    char fo[] = "jN2";
-    char ff[] = "ZXI";
-    char si[] = "1ZV";
-    char sv[] = "83a";
-    char ei[] = "DNf";
-    char ni[] = "djR";
-    char te[] = "1bF";
-    char el[] = "RzX";
-    char tw[] = "3Mz";
-    char ti[] = "Y3I";
-    char fu[] = "zdDV9";
+    setbuf(stdin, NULL);
+    setbuf(stdout, NULL);
 
+    char input_uname[128];
+    char input_pword[128];
 
+    char acc[8] = "mallory";
+
+    /*/ old, terminal-based inputs
     if (argc < 3) {
         printf("Usage: %s USER_NAME PASSWORD\n", argv[0]);
         exit(1);
     }
-    int check = strcmp(acc, argv[1]);
+    // */
+
+    printf("Enter your username (max 128 characters): ");
+    fflush(stdout);
+    scanf("%128s", input_uname);
+
+    int check = strcmp(acc, input_uname);
     if (check != 0) {
-        printf(argv[1]);
+        printf(input_uname);
         printf(" isn't a valid user\nGoodbye!\n");
-        exit(1);
+        fflush(stdout);
+        return 0;
     }
     else {
-        char baed[] = "c6";
-        char sibhok[] = "3f";
-        char song[] = "7d";
-        char saam[] = "05";
-        char sib[] = "ca";
-        char sibhaa[] = "b9";
-        char sibsaam[] = "10";
-        char nxng[] = "a6";
-        char jet[] = "2e";
-        char haa[] = "83";
-        char sii[] = "7d";
-        char kaew[] = "bf";
-        char sibed[] = "d1";
-        char sibsong[] = "44";
-        char hok[] = "33";
-        char sibsii[] = "e6";
+        printf("Enter your password (max 128 characters): ");
+        fflush(stdout);
+        scanf("%127s", input_pword);
         char pwdcmp[33];
-        sprintf(pwdcmp, "%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s", nxng, song, saam, sii, haa, hok, jet, baed, kaew, sib, sibed, sibsong, sibsaam, sibsii, sibhaa, sibhok);
+        FILE * phashf = fopen("./phash.txt", "r");
+        fscanf(phashf, "%s", pwdcmp);
+        // sprintf(pwdcmp, "%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s", nxng, song, saam, sii, haa, hok, jet, baed, kaew, sib, sibed, sibsong, sibsaam, sibsii, sibhaa, sibhok);
         unsigned char c[MD5_DIGEST_LENGTH];
         MD5_CTX mdContext;
         MD5_Init(&mdContext);
-        MD5_Update(&mdContext, argv[2], strlen(argv[2]));
+        // MD5_Update(&mdContext, argv[2], strlen(argv[2]));
+        MD5_Update(&mdContext, input_pword, strlen(input_pword));
         MD5_Final(c, &mdContext);
         char hex[2*sizeof(c) + 1];
         sprintf(hex, "%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x", c[0], c[1], c[2], c[3], c[4], c[5], c[6], c[7], c[8], c[9], c[10], c[11], c[12], c[13], c[14], c[15]);
         if (strcmp(pwdcmp, hex)) {
             printf("Incorrect Password, Goodbye!\n");
+            fflush(stdout);
         }
         else {
             char bsf[45];
-            snprintf(bsf, sizeof(bsf), "%s%s%s%s%s%s%s%s%s%s%s%s%s%s",fi, se, th, fo, ff, si, sv, ei, ni, te, el, tw, ti, fu);
-            long dSize = strlen(bsf);
-            char * fn = convert(bsf, dSize, &dSize); 
-            printf("%s\n", fn);
+            FILE * flag = fopen("./flag.txt", "r");
+            fscanf(flag, "%s", bsf);
+            // snprintf(bsf, sizeof(bsf), "%s%s%s%s%s%s%s%s%s%s%s%s%s%s",fi, se, th, fo, ff, si, sv, ei, ni, te, el, tw, ti, fu);
+            // long dSize = strlen(bsf);
+            // char * fn = convert(bsf, dSize, &dSize);
+            // printf("%s\n", fn);
+            printf("%s\n", bsf);
+            fflush(stdout);
         }
     }   
 
