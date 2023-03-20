@@ -22,3 +22,9 @@ We recovered a binary file from an old server we found on ebay. The company fold
 
 ## Flag
 ucsec{r3ver5e_7h3_v4ulTs_s3cr3t5}
+
+
+## Note
+There are two branches in this repository. The default branch "release" is the challenge as was hosted and released. The "static" branch contains the Challenge
+as a static non-hosted version. They function somewhat the same, however, the static version was too simple for people with more experience in reverse engineering.
+The decision was made to change the challenge to obe hosted, to increase the difficulty. This was done with help from e-seng.
